@@ -4,13 +4,13 @@ import ballerina/time;
 function formatDateToWords(string dateString) returns string|error {
     // Append default time to make it a valid RFC 3339 timestamp
     string fullTimestamp = dateString + "T00:00:00Z";
-    
+
     // Parse the timestamp string to Civil record
     time:Civil civil = check time:civilFromString(fullTimestamp);
-    
+
     // Get month name from month number
     string monthName = getMonthName(civil.month);
-    
+
     // Return formatted string
     return monthName + " " + civil.day.toString();
 }
@@ -58,4 +58,8 @@ function getMonthName(int monthNumber) returns string {
             return "Invalid";
         }
     }
+}
+
+function getNextId() returns string {
+    return "mock-id";
 }

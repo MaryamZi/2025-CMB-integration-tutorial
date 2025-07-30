@@ -59,3 +59,11 @@ enum Sentiment {
     NEUTRAL
 }
 
+type Contact_number string[3];
+
+type RegistrationDetails record {|
+    string first_name;
+    string last_name;
+    string email;
+    Contact_number contact_number;
+|};

@@ -63,4 +63,21 @@ service /o2mart on httpDefaultListener {
             return error("unhandled error", err);
         }
     }
+
+    resource function post register(@http:Payload RegistrationDetails registrationDetails) returns error|json {
+        do {
+            Customer customer = {
+                name: registrationDetails.first_name + " " + registrationDetails.last_name,
+                email: registrationDetails.email,
+                phone: "-".'join(...registrationDetails.contact_number),
+                loyalty: {points: 0, expiryDate: ""},
+                id: getNextId()
+            };
+            anydata response = check backendConnection->post("/customers", customer);
+
+        } on fail error err {
+            // handle error
+            return error("unhandled error", err);
+        }
+    }
 }

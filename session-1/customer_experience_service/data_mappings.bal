@@ -8,3 +8,10 @@ function transformPromotion(promos:Promotion promotion, Product product) returns
     discountedPrice: product.price * (100 - promotion.percentage) / 100
 };
 
+function transformCustomer(RegistrationDetails registrationDetails) returns Customer => {
+    phone: "-".'join(...registrationDetails.contact_number),
+    loyalty: {points: 0, expiryDate: ""},
+    name: registrationDetails.first_name + " " + registrationDetails.last_name,
+    id: getNextId(),
+    email: registrationDetails.email
+};
